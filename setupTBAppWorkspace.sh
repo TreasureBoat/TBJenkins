@@ -3,7 +3,7 @@ ROOT="$WORKSPACE/Root"
 TB_PROJECT="woproject.jar"
 JOB_ROOT="${WORKSPACE}/../.."
 FRAMEWORKS_REPOSITORY="${JENKINS_HOME}/TreasureBoatFrameworksRepository"
-WONDEREXTENSIONSLABORATORY="WonderExtensionLaboratory"
+WONDEREXTENSIONSLABORATORY="TreasureBoatProfessional"
 
 echo "Project Name: WOdka LAB Framework"
 
