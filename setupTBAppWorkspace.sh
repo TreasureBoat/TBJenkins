@@ -5,7 +5,7 @@ JOB_ROOT="${WORKSPACE}/../.."
 FRAMEWORKS_REPOSITORY="${JENKINS_HOME}/TreasureBoatFrameworksRepository"
 WONDEREXTENSIONSLABORATORY="TreasureBoatProfessional"
 
-echo "Project Name: WOdka LAB Framework"
+echo "Project Name: Treasure Boat Professional Framework"
 
 #
 # Configure the environment based on the platform information.
