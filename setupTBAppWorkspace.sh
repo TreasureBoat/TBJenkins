@@ -113,14 +113,16 @@ fi
 
 mkdir -p ${WO_EXTENSIONS_FOR_THIS_BUILD}
 
-echo "create symbolic link ${TB_PROJECT_JAR} to ${ROOT}/lib/ so Ant can build the WO project."
+echo "create symbolic link ${TB_PROJECT_JAR} to ${ROOT}/lib/ so Ant can build the TB project."
 mkdir -p ${ROOT}/lib
-ln -sfn ${FRAMEWORKS_REPOSITORY}/TBProject/${TB_PROJECT_JAR} ${ROOT}/lib/${TB_PROJECT_JAR}
+ln -sf ${FRAMEWORKS_REPOSITORY}/TBProject/${TB_PROJECT_JAR} ${ROOT}/lib/${TB_PROJECT_JAR}
 echo ln -sfn ${FRAMEWORKS_REPOSITORY}/TBProject/${TB_PROJECT_JAR} ${ROOT}/lib/${TB_PROJECT_JAR}
 
 # Setup Directories for System
+echo "mkdir ${WO_SYSTEM_ROOT_FOR_THIS_BUILD}/Library."
 mkdir -p "${WO_SYSTEM_ROOT_FOR_THIS_BUILD}/Library"
 ln -sfn ${WEBOBJECTS_FRAMEWORKS_IN_FRAMEWORKS_REPOSITORY} ${WO_SYSTEM_FRAMEWORKS_FOR_THIS_BUILD}
+echo ln -sfn ${WEBOBJECTS_FRAMEWORKS_IN_FRAMEWORKS_REPOSITORY} ${WO_SYSTEM_FRAMEWORKS_FOR_THIS_BUILD}
 
 # Setup Directories for Local Frameworks
 mkdir -p ${WO_LOCAL_FRAMEWORKS_FOR_THIS_BUILD}
