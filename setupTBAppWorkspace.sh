@@ -113,10 +113,10 @@ fi
 
 mkdir -p ${WO_EXTENSIONS_FOR_THIS_BUILD}
 
-echo "Copy ${TB_PROJECT_JAR} to ${ROOT}/lib/ so Ant can build the WO project."
+echo "create symbolic link ${TB_PROJECT_JAR} to ${ROOT}/lib/ so Ant can build the WO project."
 mkdir -p ${ROOT}/lib
-cp ${FRAMEWORKS_REPOSITORY}/TBProject/${TB_PROJECT_JAR} ${ROOT}/lib/${TB_PROJECT_JAR}
-echo cp ${FRAMEWORKS_REPOSITORY}/TBProject/${TB_PROJECT_JAR} ${ROOT}/lib/${TB_PROJECT_JAR}
+ln -sfn ${FRAMEWORKS_REPOSITORY}/TBProject/${TB_PROJECT_JAR} ${ROOT}/lib/${TB_PROJECT_JAR}
+echo ln -sfn ${FRAMEWORKS_REPOSITORY}/TBProject/${TB_PROJECT_JAR} ${ROOT}/lib/${TB_PROJECT_JAR}
 
 # Setup Directories for System
 mkdir -p "${WO_SYSTEM_ROOT_FOR_THIS_BUILD}/Library"
@@ -141,8 +141,8 @@ echo "create and copy Compiler Templates for App's"
 mkdir -p ${WORKSPACE}/${WONDEREXTENSIONSLABORATORY}/WOdkaTemplates/Templates
 cp ${WODKA_ROOT_IN_FRAMEWORKS_REPOSITORY}/Library/Templates/common-framework.xml ${WORKSPACE}/${WONDEREXTENSIONSLABORATORY}/WOdkaTemplates/Templates/common-framework.xml 
 cp ${WODKA_ROOT_IN_FRAMEWORKS_REPOSITORY}/Library/Templates/common-app.xml ${WORKSPACE}/${WONDEREXTENSIONSLABORATORY}/WOdkaTemplates/Templates/common-app.xml 
-echo copying the ${TB_PROJECT_JAR} to ${WORKSPACE}/${WONDEREXTENSIONSLABORATORY}/WOdkaTemplates/Templates
-cp ${WODKA_ROOT_IN_FRAMEWORKS_REPOSITORY}/Library/Templates/${TB_PROJECT_JAR} ${WORKSPACE}/${WONDEREXTENSIONSLABORATORY}/WOdkaTemplates/Templates/${TB_PROJECT_JAR} 
+echo create symbolic link ln -sfn ${WODKA_ROOT_IN_FRAMEWORKS_REPOSITORY}/Library/Templates/${TB_PROJECT_JAR} ${WORKSPACE}/${WONDEREXTENSIONSLABORATORY}/WOdkaTemplates/Templates/${TB_PROJECT_JAR} 
+ln -sfn ${WODKA_ROOT_IN_FRAMEWORKS_REPOSITORY}/Library/Templates/${TB_PROJECT_JAR} ${WORKSPACE}/${WONDEREXTENSIONSLABORATORY}/WOdkaTemplates/Templates/${TB_PROJECT_JAR} 
 
 echo "Setup ${ROOT}/jenkins.build.properties for Ant to use for building"
 cat > ${ROOT}/jenkins.build.properties << END
