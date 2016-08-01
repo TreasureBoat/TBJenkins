@@ -5,7 +5,11 @@ JOB_ROOT="${WORKSPACE}/../.."
 FRAMEWORKS_REPOSITORY="${JENKINS_HOME}/TreasureBoatFrameworksRepository"
 WONDEREXTENSIONSLABORATORY="TreasureBoatProfessional"
 
-echo "Project Name: TreasureBoatProfessional Framework"
+echo "*****************************************************"
+echo "Project Name: TreasureBoatProfessional Applications Builder"
+echo "              TBJenkins/setupTBAppWorkspace.sh"
+echo "              This ASSUMES that you have built TBProfessional into the WOdka folder"
+echo "*****************************************************"
 
 #
 # Configure the environment based on the platform information.
