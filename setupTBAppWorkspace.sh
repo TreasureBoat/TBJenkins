@@ -125,9 +125,11 @@ ln -sfn ${WEBOBJECTS_FRAMEWORKS_IN_FRAMEWORKS_REPOSITORY} ${WO_SYSTEM_FRAMEWORKS
 echo ln -sfn ${WEBOBJECTS_FRAMEWORKS_IN_FRAMEWORKS_REPOSITORY} ${WO_SYSTEM_FRAMEWORKS_FOR_THIS_BUILD}
 
 # Setup Directories for Local Frameworks
+echo "mkdir -p ${WO_LOCAL_FRAMEWORKS_FOR_THIS_BUILD}"
 mkdir -p ${WO_LOCAL_FRAMEWORKS_FOR_THIS_BUILD}
 
 # Get all the Projects that have been checked out as part of this job
+echo "ls ${WODKA_FRAMEWORKS_IN_FRAMEWORKS_REPOSITORY}/ into PROJUECTS variable."
 PROJECTS=`ls ${WODKA_FRAMEWORKS_IN_FRAMEWORKS_REPOSITORY}/`
 
 # Step through all wodka Frameworks and create a link
