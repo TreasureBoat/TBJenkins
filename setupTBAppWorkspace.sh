@@ -70,7 +70,10 @@ echo "       System Path Prefix: ${SYSTEM_PATH_PREFIX}"
 			  WOTASKD_IN_FRAMEWORKS_REPOSITORY="${WO_JAVA_APPS_ROOT_IN_FRAMEWORKS_REPOSITORY}/wotaskd.woa"
 WEBOBJECTS_FRAMEWORKS_IN_FRAMEWORKS_REPOSITORY="${WEBOBJECTS_ROOT_IN_FRAMEWORKS_REPOSITORY}/Library/Frameworks"
 
-		   WODKA_ROOT_IN_FRAMEWORKS_REPOSITORY="${FRAMEWORKS_REPOSITORY}/TreasureBoat"
+		   TB_ROOT_IN_FRAMEWORKS_REPOSITORY="${FRAMEWORKS_REPOSITORY}/TreasureBoat"
+	 TB_FRAMEWORKS_IN_FRAMEWORKS_REPOSITORY="${TB_ROOT_IN_FRAMEWORKS_REPOSITORY}/Library/Frameworks"
+
+		   WODKA_ROOT_IN_FRAMEWORKS_REPOSITORY="${FRAMEWORKS_REPOSITORY}/WOdka"
 	 WODKA_FRAMEWORKS_IN_FRAMEWORKS_REPOSITORY="${WODKA_ROOT_IN_FRAMEWORKS_REPOSITORY}/Library/Frameworks"
 
 				 WO_SYSTEM_ROOT_FOR_THIS_BUILD="${ROOT}${SYSTEM_PATH_PREFIX}"
@@ -127,10 +130,21 @@ echo ln -sfn ${WEBOBJECTS_FRAMEWORKS_IN_FRAMEWORKS_REPOSITORY} ${WO_SYSTEM_FRAME
 # Setup Directories for Local Frameworks
 mkdir -p ${WO_LOCAL_FRAMEWORKS_FOR_THIS_BUILD}
 
-# Get all the Projects that have been checked out as part of this job
+# Get all the TreasureBoat Projects that have been checked out as part of this job
+PROJECTS=`ls ${TB_FRAMEWORKS_IN_FRAMEWORKS_REPOSITORY}/`
+
+# Step through all TreasureBoat Frameworks and create a link
+for PROJECT in $PROJECTS; do
+	echo "processing ${PROJECT} :"
+	echo "        Linking: ln -sfn ${TB_FRAMEWORKS_IN_FRAMEWORKS_REPOSITORY}/${PROJECT}"
+	echo "                         ${WO_LOCAL_FRAMEWORKS_FOR_THIS_BUILD}"
+	ln -sfn ${WODKA_FRAMEWORKS_IN_FRAMEWORKS_REPOSITORY}/${PROJECT} ${WO_LOCAL_FRAMEWORKS_FOR_THIS_BUILD}
+done
+
+# Get all the TreasureBoatProfessional Frameworks that have been checked out as part of this job
 PROJECTS=`ls ${WODKA_FRAMEWORKS_IN_FRAMEWORKS_REPOSITORY}/`
 
-# Step through all wodka Frameworks and create a link
+# Step through all TreasureBoatProfessional Frameworks and create a link
 for PROJECT in $PROJECTS; do
 	echo "processing ${PROJECT} :"
 	echo "        Linking: ln -sfn ${WODKA_FRAMEWORKS_IN_FRAMEWORKS_REPOSITORY}/${PROJECT}"
