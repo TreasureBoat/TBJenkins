@@ -114,21 +114,25 @@ fi
 mkdir -p ${WO_EXTENSIONS_FOR_THIS_BUILD}
 
 echo "create symbolic link ${TB_PROJECT_JAR} to ${ROOT}/lib/ so Ant can build the TB project."
+echo "mkdir -p ${ROOT}/lib"
 mkdir -p ${ROOT}/lib
+
+echo "ln -sfn ${FRAMEWORKS_REPOSITORY}/TBProject/${TB_PROJECT_JAR} ${ROOT}/lib/${TB_PROJECT_JAR}"
 ln -sf ${FRAMEWORKS_REPOSITORY}/TBProject/${TB_PROJECT_JAR} ${ROOT}/lib/${TB_PROJECT_JAR}
-echo ln -sfn ${FRAMEWORKS_REPOSITORY}/TBProject/${TB_PROJECT_JAR} ${ROOT}/lib/${TB_PROJECT_JAR}
 
 # Setup Directories for System
-echo "mkdir ${WO_SYSTEM_ROOT_FOR_THIS_BUILD}/Library."
+echo "mkdir -p ${WO_SYSTEM_ROOT_FOR_THIS_BUILD}/Library."
 mkdir -p "${WO_SYSTEM_ROOT_FOR_THIS_BUILD}/Library"
-ln -sfn ${WEBOBJECTS_FRAMEWORKS_IN_FRAMEWORKS_REPOSITORY} ${WO_SYSTEM_FRAMEWORKS_FOR_THIS_BUILD}
-echo ln -sfn ${WEBOBJECTS_FRAMEWORKS_IN_FRAMEWORKS_REPOSITORY} ${WO_SYSTEM_FRAMEWORKS_FOR_THIS_BUILD}
 
-# Setup Directories for Local Frameworks
+echo "ln -sfn ${WEBOBJECTS_FRAMEWORKS_IN_FRAMEWORKS_REPOSITORY} ${WO_SYSTEM_FRAMEWORKS_FOR_THIS_BUILD}"
+ln -sfn ${WEBOBJECTS_FRAMEWORKS_IN_FRAMEWORKS_REPOSITORY} ${WO_SYSTEM_FRAMEWORKS_FOR_THIS_BUILD}
+
+echo "*** Setup Directories for Local Frameworks  ***"
 echo "mkdir -p ${WO_LOCAL_FRAMEWORKS_FOR_THIS_BUILD}"
 mkdir -p ${WO_LOCAL_FRAMEWORKS_FOR_THIS_BUILD}
 
 # Get all the Projects that have been checked out as part of this job
+echo " Get all the Projects that have been checked out as part of this job "
 echo "ls ${WODKA_FRAMEWORKS_IN_FRAMEWORKS_REPOSITORY}/ into PROJUECTS variable."
 PROJECTS=`ls ${WODKA_FRAMEWORKS_IN_FRAMEWORKS_REPOSITORY}/`
 
@@ -145,7 +149,8 @@ echo "create and copy Compiler Templates for App's"
 mkdir -p ${WORKSPACE}/${WONDEREXTENSIONSLABORATORY}/WOdkaTemplates/Templates
 cp ${WODKA_ROOT_IN_FRAMEWORKS_REPOSITORY}/Library/Templates/common-framework.xml ${WORKSPACE}/${WONDEREXTENSIONSLABORATORY}/WOdkaTemplates/Templates/common-framework.xml 
 cp ${WODKA_ROOT_IN_FRAMEWORKS_REPOSITORY}/Library/Templates/common-app.xml ${WORKSPACE}/${WONDEREXTENSIONSLABORATORY}/WOdkaTemplates/Templates/common-app.xml 
-echo create symbolic link ln -sfn ${WODKA_ROOT_IN_FRAMEWORKS_REPOSITORY}/Library/Templates/${TB_PROJECT_JAR} ${WORKSPACE}/${WONDEREXTENSIONSLABORATORY}/WOdkaTemplates/Templates/${TB_PROJECT_JAR} 
+
+echo "create symbolic link ln -sfn ${WODKA_ROOT_IN_FRAMEWORKS_REPOSITORY}/Library/Templates/${TB_PROJECT_JAR} ${WORKSPACE}/${WONDEREXTENSIONSLABORATORY}/WOdkaTemplates/Templates/${TB_PROJECT_JAR} "
 ln -sfn ${WODKA_ROOT_IN_FRAMEWORKS_REPOSITORY}/Library/Templates/${TB_PROJECT_JAR} ${WORKSPACE}/${WONDEREXTENSIONSLABORATORY}/WOdkaTemplates/Templates/${TB_PROJECT_JAR} 
 
 echo "Setup ${ROOT}/jenkins.build.properties for Ant to use for building"
