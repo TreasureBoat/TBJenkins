@@ -70,9 +70,6 @@ echo "       System Path Prefix: ${SYSTEM_PATH_PREFIX}"
 			  WOTASKD_IN_FRAMEWORKS_REPOSITORY="${WO_JAVA_APPS_ROOT_IN_FRAMEWORKS_REPOSITORY}/wotaskd.woa"
 WEBOBJECTS_FRAMEWORKS_IN_FRAMEWORKS_REPOSITORY="${WEBOBJECTS_ROOT_IN_FRAMEWORKS_REPOSITORY}/Library/Frameworks"
 
-		   TB_ROOT_IN_FRAMEWORKS_REPOSITORY="${FRAMEWORKS_REPOSITORY}/TreasureBoat"
-	 TB_FRAMEWORKS_IN_FRAMEWORKS_REPOSITORY="${TB_ROOT_IN_FRAMEWORKS_REPOSITORY}/Library/Frameworks"
-
 		   WODKA_ROOT_IN_FRAMEWORKS_REPOSITORY="${FRAMEWORKS_REPOSITORY}/WOdka"
 	 WODKA_FRAMEWORKS_IN_FRAMEWORKS_REPOSITORY="${WODKA_ROOT_IN_FRAMEWORKS_REPOSITORY}/Library/Frameworks"
 
@@ -130,21 +127,10 @@ echo ln -sfn ${WEBOBJECTS_FRAMEWORKS_IN_FRAMEWORKS_REPOSITORY} ${WO_SYSTEM_FRAME
 # Setup Directories for Local Frameworks
 mkdir -p ${WO_LOCAL_FRAMEWORKS_FOR_THIS_BUILD}
 
-# Get all the TreasureBoat Projects that have been checked out as part of this job
-PROJECTS=`ls ${TB_FRAMEWORKS_IN_FRAMEWORKS_REPOSITORY}/`
-
-# Step through all TreasureBoat Frameworks and create a link
-for PROJECT in $PROJECTS; do
-	echo "processing ${PROJECT} :"
-	echo "        Linking: ln -sfn ${TB_FRAMEWORKS_IN_FRAMEWORKS_REPOSITORY}/${PROJECT}"
-	echo "                         ${WO_LOCAL_FRAMEWORKS_FOR_THIS_BUILD}"
-	ln -sfn ${TB_FRAMEWORKS_IN_FRAMEWORKS_REPOSITORY}/${PROJECT} ${WO_LOCAL_FRAMEWORKS_FOR_THIS_BUILD}
-done
-
-# Get all the TreasureBoatProfessional Frameworks that have been checked out as part of this job
+# Get all the Projects that have been checked out as part of this job
 PROJECTS=`ls ${WODKA_FRAMEWORKS_IN_FRAMEWORKS_REPOSITORY}/`
 
-# Step through all TreasureBoatProfessional Frameworks and create a link
+# Step through all wodka Frameworks and create a link
 for PROJECT in $PROJECTS; do
 	echo "processing ${PROJECT} :"
 	echo "        Linking: ln -sfn ${WODKA_FRAMEWORKS_IN_FRAMEWORKS_REPOSITORY}/${PROJECT}"
@@ -155,10 +141,10 @@ done
 # Create Template Folder (WOFrameworksRepository/WOdka/Library/Templates)
 echo "create and copy Compiler Templates for App's"
 mkdir -p ${WORKSPACE}/${WONDEREXTENSIONSLABORATORY}/WOdkaTemplates/Templates
-cp ${TB_ROOT_IN_FRAMEWORKS_REPOSITORY}/Library/Templates/common-framework.xml ${WORKSPACE}/${WONDEREXTENSIONSLABORATORY}/WOdkaTemplates/Templates/common-framework.xml 
-cp ${TB_ROOT_IN_FRAMEWORKS_REPOSITORY}/Library/Templates/common-app.xml ${WORKSPACE}/${WONDEREXTENSIONSLABORATORY}/WOdkaTemplates/Templates/common-app.xml 
+cp ${WODKA_ROOT_IN_FRAMEWORKS_REPOSITORY}/Library/Templates/common-framework.xml ${WORKSPACE}/${WONDEREXTENSIONSLABORATORY}/WOdkaTemplates/Templates/common-framework.xml 
+cp ${WODKA_ROOT_IN_FRAMEWORKS_REPOSITORY}/Library/Templates/common-app.xml ${WORKSPACE}/${WONDEREXTENSIONSLABORATORY}/WOdkaTemplates/Templates/common-app.xml 
 echo create symbolic link ln -sfn ${WODKA_ROOT_IN_FRAMEWORKS_REPOSITORY}/Library/Templates/${TB_PROJECT_JAR} ${WORKSPACE}/${WONDEREXTENSIONSLABORATORY}/WOdkaTemplates/Templates/${TB_PROJECT_JAR} 
-ln -sfn ${TB_ROOT_IN_FRAMEWORKS_REPOSITORY}/Library/Templates/${TB_PROJECT_JAR} ${WORKSPACE}/${WONDEREXTENSIONSLABORATORY}/WOdkaTemplates/Templates/${TB_PROJECT_JAR} 
+ln -sfn ${WODKA_ROOT_IN_FRAMEWORKS_REPOSITORY}/Library/Templates/${TB_PROJECT_JAR} ${WORKSPACE}/${WONDEREXTENSIONSLABORATORY}/WOdkaTemplates/Templates/${TB_PROJECT_JAR} 
 
 echo "Setup ${ROOT}/jenkins.build.properties for Ant to use for building"
 cat > ${ROOT}/jenkins.build.properties << END
